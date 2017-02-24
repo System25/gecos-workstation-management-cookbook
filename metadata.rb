@@ -215,11 +215,6 @@ sssd_js = {
       title_es: "Grupo de búsqueda",
       type: "string"
     },
-    basegroup:{
-      title: "Base Group",
-      title_es: "Grupo de base",
-      type: "string"
-    },
     binddn:{
       title: "BindDN",
       title_es: "BindDN",
@@ -1877,7 +1872,7 @@ printers_js = {
           uri: { type: "string", title: "Uri", title_es: "Uri"},
           ppd_uri: { type: "string", title: "Uri PPD", title_es: "Uri PPD", default: "", pattern: "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"},
           ppd: { type: "string", title: "PPD Name", title_es: "Nombre PPD"},
-          oppolicy: {enum: ["default","authenticated","negotiate"], default:"default", type: "string", title: "Operation Policy", title_es: "Politica de Autenticación"}
+          oppolicy: {enum: ["default","authenticated","kerberos-ad"], default:"default", type: "string", title: "Operation Policy", title_es: "Politica de Autenticación"}
         }
       }
     },
