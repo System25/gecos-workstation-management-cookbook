@@ -1813,9 +1813,22 @@ diagnosis_mode_js = {
   type: "object",
   title: "Diagnosis mode",
   title_es: "Modo diagnóstico",
-  required: ["enable_diagnosis"],
+  required: ["enable_diagnosis", "modification_datetime"],
   is_mergeable: false,
   autoreverse: false,
+  form: {
+      type:"section",
+      items: [
+        "enable_diagnosis",
+        type:"section",
+        items: [
+          {
+            key:"modification_datetime",
+            type: "hidden" 
+          }
+        ]
+     ]
+  },  
   properties:
   {
      enable_diagnosis: {
@@ -1826,6 +1839,11 @@ diagnosis_mode_js = {
           type: "boolean",
           default: false
      },
+     modification_datetime: {
+          title: "Las modification date",
+          title_es: "Fecha de última modificación",
+          type: "string"
+     },    
     job_ids: {
       type: "array",
       minItems: 0,
