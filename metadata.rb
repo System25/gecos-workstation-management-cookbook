@@ -1813,7 +1813,7 @@ diagnosis_mode_js = {
   type: "object",
   title: "Diagnosis mode",
   title_es: "Modo diagnóstico",
-  required: ["enable_diagnosis", "modification_datetime"],
+  required: ["enable_diagnosis", "expire_datetime"],
   is_mergeable: false,
   autoreverse: false,
   form: {
@@ -1823,7 +1823,7 @@ diagnosis_mode_js = {
         type:"section",
         items: [
           {
-            key:"modification_datetime",
+            key:"expire_datetime",
             type: "hidden" 
           }
         ]
@@ -1839,9 +1839,9 @@ diagnosis_mode_js = {
           type: "boolean",
           default: false
      },
-     modification_datetime: {
-          title: "Las modification date",
-          title_es: "Fecha de última modificación",
+     expire_datetime: {
+          title: "Expire date and time",
+          title_es: "Fecha y hora de expiración",
           type: "string"
      },    
     job_ids: {
