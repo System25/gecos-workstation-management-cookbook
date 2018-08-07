@@ -24,7 +24,7 @@ action :setup do
       Chef::Log.debug("diagnosis_mode.rb ::: gcc_control => #{gcc_control}")      
       
       enable_diagnosis = new_resource.enable_diagnosis
-      if Time.parse(new_resource.expire_datetime) < Time.now
+      if new_resource.expire_datetime == '' or Time.parse(new_resource.expire_datetime) < Time.now
         enable_diagnosis = false
       end
       

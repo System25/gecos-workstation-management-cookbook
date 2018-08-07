@@ -1815,7 +1815,7 @@ diagnosis_mode_js = {
   title_es: "Modo diagnóstico",
   required: ["enable_diagnosis", "expire_datetime"],
   is_mergeable: false,
-  autoreverse: false,
+  autoreverse: true,
   form: {
       type:"section",
       items: [
