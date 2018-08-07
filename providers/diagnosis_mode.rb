@@ -9,6 +9,7 @@
 # http://www.osor.eu/eupl
 #
 require 'json'
+require 'time'
 
 action :setup do
 
@@ -22,6 +23,11 @@ action :setup do
       gcc_control = JSON.parse(file)
       Chef::Log.debug("diagnosis_mode.rb ::: gcc_control => #{gcc_control}")      
       
+      enable_diagnosis = new_resource.enable_diagnosis
+      if Time.parse(new_resource.expire_datetime) < Time.now
+        enable_diagnosis = false
+      end
+      
       # Set diagnosis mode flag
       template "/etc/gcc.control" do
           source 'gcc.control.erb'
@@ -32,7 +38,7 @@ action :setup do
             :uri_gcc => gcc_control['uri_gcc'],
             :gcc_username => gcc_control['gcc_username'],
             :gcc_nodename => gcc_control['gcc_nodename'],
-            :diagnosys_mode => new_resource.enable_diagnosis
+            :diagnosys_mode => enable_diagnosis
           })
       end     
 

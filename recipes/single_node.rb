@@ -19,6 +19,7 @@ gecos_ws_mgmt_network "localhost" do
 end
 
 gecos_ws_mgmt_diagnosis_mode "diagnosis mode" do
+  expire_datetime node[:gecos_ws_mgmt][:single_node][:diagnosis_mode_res][:expire_datetime]
   enable_diagnosis node[:gecos_ws_mgmt][:single_node][:diagnosis_mode_res][:enable_diagnosis]
   job_ids node[:gecos_ws_mgmt][:single_node][:diagnosis_mode_res][:job_ids]
   support_os node[:gecos_ws_mgmt][:single_node][:diagnosis_mode_res][:support_os]
