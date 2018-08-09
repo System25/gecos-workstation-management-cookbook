@@ -18,26 +18,18 @@ action :setup do
     # Checking OS 
     if new_resource.support_os.include?($gecos_os)
 
-      # Read /etc/gcc.control file
-      file = ::File.read('/etc/gcc.control')
-      gcc_control = JSON.parse(file)
-      Chef::Log.debug("debug_mode.rb ::: gcc_control => #{gcc_control}")      
-      
       enable_debug = new_resource.enable_debug
       if new_resource.expire_datetime == '' or Time.parse(new_resource.expire_datetime) < Time.now
         enable_debug = false
       end
       
       # Set debug mode flag
-      template "/etc/gcc.control" do
-          source 'gcc.control.erb'
+      template "/etc/gecos/debug_mode" do
+          source 'debug_mode.erb'
           owner "root"
           group "root"
-          mode 00755
+          mode 00644
           variables({
-            :uri_gcc => gcc_control['uri_gcc'],
-            :gcc_username => gcc_control['gcc_username'],
-            :gcc_nodename => gcc_control['gcc_nodename'],
             :debug_mode => enable_debug
           })
       end     
