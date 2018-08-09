@@ -1809,17 +1809,17 @@ scripts_launch_js = {
   }
 }
 
-diagnosis_mode_js = {
+debug_mode_js = {
   type: "object",
-  title: "Diagnosis mode",
+  title: "Debug mode",
   title_es: "Modo diagnóstico",
-  required: ["enable_diagnosis", "expire_datetime"],
+  required: ["enable_debug", "expire_datetime"],
   is_mergeable: false,
   autoreverse: true,
   form: {
       type:"section",
       items: [
-        "enable_diagnosis",
+        "enable_debug",
         type:"section",
         items: [
           {
@@ -1831,8 +1831,8 @@ diagnosis_mode_js = {
   },  
   properties:
   {
-     enable_diagnosis: {
-          title: "Enable diagnosis mode for this computer?",
+     enable_debug: {
+          title: "Enable debug mode for this computer?",
           title_es: "¿Habilitar el modo diagnóstico para este puesto?",
           description: "If this box is checked the computer will send logs to the GECOS Control Center.",
           description_es: "Si se marca esta casilla el puesto enviará logs al Centro de Control GECOS",
@@ -2846,7 +2846,7 @@ ttys_js = {
   }
 }
 
-diagnosis_mode_js[:properties][:support_os][:default]=["GECOS V3", "GECOS V2",  "GECOS V3 Lite", "Gecos V2 Lite"]
+debug_mode_js[:properties][:support_os][:default]=["GECOS V3", "GECOS V2",  "GECOS V3 Lite", "Gecos V2 Lite"]
 network_resource_js[:properties][:support_os][:default]=["GECOS V3", "GECOS V2",  "GECOS V3 Lite", "Gecos V2 Lite"]
 tz_date_js[:properties][:support_os][:default]=["GECOS V3", "GECOS V2",  "GECOS V3 Lite", "Gecos V2 Lite"]
 scripts_launch_js[:properties][:support_os][:default]=["GECOS V3", "GECOS V2",  "GECOS V3 Lite", "Gecos V2 Lite"]
@@ -2918,10 +2918,10 @@ complete_js = {
         },
         single_node: {
           type: "object",
-          required: ["network_res", "diagnosis_mode_res"],
+          required: ["network_res", "debug_mode_res"],
           properties: {
             network_res: network_resource_js,
-            diagnosis_mode_res: diagnosis_mode_js
+            debug_mode_res: debug_mode_js
           }
         },
         misc_mgmt: {

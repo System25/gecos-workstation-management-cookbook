@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: gecos-ws-mgmt
-# Resource:: diagnosis_mode
+# Resource:: debug_mode
 #
 # Copyright 2018, Junta de Andalucia
 # http://www.juntadeandalucia.es/
@@ -12,6 +12,6 @@
 actions :setup
 
 attribute :expire_datetime, :kind_of => String
-attribute :enable_diagnosis, :kind_of => [TrueClass, FalseClass], :required => false
+attribute :enable_debug, :kind_of => [TrueClass, FalseClass], :required => false
 attribute :job_ids, :kind_of => Array
 attribute :support_os, :kind_of => Array

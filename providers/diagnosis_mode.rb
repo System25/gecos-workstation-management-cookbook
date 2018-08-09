@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: gecos-ws-mgmt
-# Provider:: diagnosis_mode
+# Provider:: debug_mode
 #
 # Copyright 2018, Junta de Andalucia
 # http://www.juntadeandalucia.es/
@@ -21,14 +21,14 @@ action :setup do
       # Read /etc/gcc.control file
       file = ::File.read('/etc/gcc.control')
       gcc_control = JSON.parse(file)
-      Chef::Log.debug("diagnosis_mode.rb ::: gcc_control => #{gcc_control}")      
+      Chef::Log.debug("debug_mode.rb ::: gcc_control => #{gcc_control}")      
       
-      enable_diagnosis = new_resource.enable_diagnosis
+      enable_debug = new_resource.enable_debug
       if new_resource.expire_datetime == '' or Time.parse(new_resource.expire_datetime) < Time.now
-        enable_diagnosis = false
+        enable_debug = false
       end
       
-      # Set diagnosis mode flag
+      # Set debug mode flag
       template "/etc/gcc.control" do
           source 'gcc.control.erb'
           owner "root"
@@ -38,7 +38,7 @@ action :setup do
             :uri_gcc => gcc_control['uri_gcc'],
             :gcc_username => gcc_control['gcc_username'],
             :gcc_nodename => gcc_control['gcc_nodename'],
-            :diagnosys_mode => enable_diagnosis
+            :debug_mode => enable_debug
           })
       end     
 
@@ -69,7 +69,7 @@ action :setup do
     end
   ensure
     
-    gecos_ws_mgmt_jobids "diagnosis_mode_res" do
+    gecos_ws_mgmt_jobids "debug_mode_res" do
        recipe "single_node"
     end.run_action(:reset)
     
