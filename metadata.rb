@@ -1816,19 +1816,6 @@ debug_mode_js = {
   required: ["enable_debug", "expire_datetime"],
   is_mergeable: false,
   autoreverse: true,
-  form: {
-      type:"section",
-      items: [
-        "enable_debug",
-        type:"section",
-        items: [
-          {
-            key:"expire_datetime",
-            type: "hidden" 
-          }
-        ]
-     ]
-  },  
   properties:
   {
      enable_debug: {
