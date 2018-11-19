@@ -11,16 +11,16 @@
 
 action :setup do
   begin
-    $required_pkgs['desktop_background'].each do |pkg|
-      Chef::Log.debug("desktop_background.rb - REQUIRED PACKAGE = #{pkg}")
-      package pkg do
-        action :nothing
-      end.run_action(:install)
-    end
-
     if new_resource.support_os.include?($gecos_os)
 
       if !new_resource.users.nil? && !new_resource.users.empty?
+        $required_pkgs['desktop_background'].each do |pkg|
+          Chef::Log.debug("desktop_background.rb - REQUIRED PACKAGE = #{pkg}")
+          package pkg do
+            action :nothing
+          end.run_action(:install)
+        end
+
         users = new_resource.users
         users.each_key do |user_key|
           nameuser = user_key

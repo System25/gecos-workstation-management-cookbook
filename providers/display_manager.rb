@@ -10,8 +10,13 @@
 #
 
 ETC_DISPLAY_MANAGER = '/etc/X11/default-display-manager'.freeze
-CURRENT_DISPLAY_MANAGER = ::File.basename(
-  ::File.read(ETC_DISPLAY_MANAGER).chomp
+
+CURRENT_DISPLAY_MANAGER = (
+  if ::File.exist?(ETC_DISPLAY_MANAGER)
+    ::File.basename(::File.read(ETC_DISPLAY_MANAGER).chomp)
+  else
+    'None'
+  end
 )
 
 action :setup do
